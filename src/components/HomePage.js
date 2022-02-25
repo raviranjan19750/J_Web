@@ -1,6 +1,6 @@
 import React from 'react'
 import Sidebar from './Sidebar'
-import { Carousel } from 'react-bootstrap'
+import { Carousel, Card } from 'react-bootstrap'
 
 function HomePageCarouselComponent() {
   return (
@@ -54,8 +54,20 @@ function HomePageCarouselComponent() {
 
 function VideoHomePageComponent() {
   return (
-    <div>
+    <div className="col-5">
+      <Card bg="dark" text="light">
+        <Card.Link href="https://www.youtube.com">
+          <Card.Img variant="top" src="temp.png" />
+        </Card.Link>
 
+        <Card.Body>
+          <Card.Title>Jain Temple</Card.Title>
+          <Card.Text>
+            Welcome to Jain Templ
+          </Card.Text>
+
+        </Card.Body>
+      </Card>
     </div>
   )
 }
@@ -72,6 +84,7 @@ function HomePage() {
           <br />
           <h3>Videos</h3>
           <VideoHomePageComponent />
+          <h3>Talent Showcase</h3>
         </div>
       </div>
     </React.Fragment>
