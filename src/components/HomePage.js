@@ -52,16 +52,26 @@ function HomePageCarouselComponent() {
   )
 }
 
+function VideoHomePageComponent() {
+  return (
+    <div>
+
+    </div>
+  )
+}
+
 function HomePage() {
   return (
     <React.Fragment >
-      <div className="row dark-theme">
+      <div className="row">
         <div className="col-2">
           <Sidebar />
         </div>
         <div className="col-8" style={{ marginTop: "35px" }}>
-
           <HomePageCarouselComponent />
+          <br />
+          <h3>Videos</h3>
+          <VideoHomePageComponent />
         </div>
       </div>
     </React.Fragment>

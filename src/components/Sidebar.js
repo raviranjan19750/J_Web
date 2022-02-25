@@ -1,57 +1,120 @@
-import React from 'react';
-import {
-  CDBSidebar,
-  CDBSidebarContent,
-  CDBSidebarFooter,
-  CDBSidebarHeader,
-  CDBSidebarMenu,
-  CDBSidebarMenuItem,
-} from 'cdbreact';
-import { NavLink } from 'react-router-dom';
+import React, { useState } from "react"
+import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader, SidebarFooter, SidebarContent } from "react-pro-sidebar"
+import { FaTachometerAlt, FaGem, FaList } from "react-icons/fa"
+import 'react-pro-sidebar/dist/css/styles.css';
+import { AiOutlineMenuUnfold, AiOutlineMenuFold } from 'react-icons/ai'
 
 function Sidebar() {
+
+  const [sidebarToggle, setSidebarToggle] = useState(true)
+
   return (
-    <div style={{ display: 'flex', height: '100vh', overflow: 'scroll initial' }}>
-      <CDBSidebar textColor="#fff" backgroundColor="#333">
-        <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
-          <a href="/" className="text-decoration-none" style={{ color: 'inherit' }}>
-            Sidebar
-          </a>
-        </CDBSidebarHeader>
 
-        <CDBSidebarContent className="sidebar-content">
-          <CDBSidebarMenu>
-            <NavLink exact to="/" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="columns">Dashboard</CDBSidebarMenuItem>
-            </NavLink>
-            <NavLink exact to="/tables" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="table">Tables</CDBSidebarMenuItem>
-            </NavLink>
-            <NavLink exact to="/profile" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="user">Profile page</CDBSidebarMenuItem>
-            </NavLink>
-            <NavLink exact to="/analytics" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="chart-line">Analytics</CDBSidebarMenuItem>
-            </NavLink>
+    <ProSidebar
+      image="statue.png"
+      rtl={false}
+      collapsed={sidebarToggle}
+      toggled={false}
+      //breakPoint="md"
+      onToggle={setSidebarToggle}
+    >
+      <SidebarHeader>
+        <div
+          style={{
+            padding: "24px",
+            textTransform: "uppercase",
+            fontWeight: "bold",
+            fontSize: 14,
+            letterSpacing: "1px",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap"
+          }}
+        >
+          {sidebarToggle ? "" : "Slogan"}
+          {sidebarToggle ? (
+            <i style={{
+              alignContent: "center",
+              fontSize: 16,
+            }} onClick={() => setSidebarToggle(!sidebarToggle)}>
+              <AiOutlineMenuUnfold />
+            </i>
+          ) : (
+            <i style={{
+              position: "absolute",
+              right: 10,
+              fontSize: 16,
+            }} onClick={() => setSidebarToggle(!sidebarToggle)}>
+              <AiOutlineMenuFold />
+            </i>
+          )}
+        </div>
+      </SidebarHeader>
 
-            <NavLink exact to="/hero404" target="_blank" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="exclamation-circle">404 page</CDBSidebarMenuItem>
-            </NavLink>
-          </CDBSidebarMenu>
-        </CDBSidebarContent>
-
-        <CDBSidebarFooter style={{ textAlign: 'center' }}>
-          <div
-            style={{
-              padding: '20px 5px',
-            }}
+      <SidebarContent>
+        <Menu iconShape="circle">
+          <MenuItem
+            icon={<FaTachometerAlt />}
           >
-            Sidebar Footer
-          </div>
-        </CDBSidebarFooter>
-      </CDBSidebar>
-    </div>
+            Dashboard
+          </MenuItem>
+          <MenuItem icon={<FaGem />}> Components</MenuItem>
+        </Menu>
+        <Menu iconShape="circle">
+
+          {/* <SubMenu
+            suffix={<span className="badge yellow">3</span>}
+            title="withSuffix"
+            icon={<FaRegLaughWink />}
+          >
+            <MenuItem>'submenu' 1</MenuItem>
+            <MenuItem>'submenu' 2</MenuItem>
+            <MenuItem>'submenu' 3</MenuItem>
+          </SubMenu>
+          <SubMenu
+            prefix={<span className="badge gray">3</span>}
+            title="withPrefix"
+            icon={<FaHeart />}
+          >
+            <MenuItem>'submenu' 1</MenuItem>
+            <MenuItem>'submenu' 2</MenuItem>
+            <MenuItem>'submenu' 3</MenuItem>
+          </SubMenu> */}
+
+          <SubMenu title="multiLevel" icon={<FaList />}>
+            <MenuItem>submenu 1 </MenuItem>
+            <MenuItem>submenu 2 </MenuItem>
+            <SubMenu title={`submenu 3`}>
+              <MenuItem>submenu 3.1 </MenuItem>
+              <MenuItem>submenu 3.2 </MenuItem>
+              <SubMenu title={`submenu 3.3`}>
+                <MenuItem>submenu 3.3.1 </MenuItem>
+                <MenuItem>submenu 3.3.2 </MenuItem>
+                <MenuItem>submenu 3.3.3 </MenuItem>
+              </SubMenu>
+            </SubMenu>
+          </SubMenu>
+        </Menu>
+      </SidebarContent>
+
+      <SidebarFooter style={{ textAlign: "center" }}>
+        <div>
+          Footer
+        </div>
+      </SidebarFooter>
+    </ProSidebar>
+
+    // <ProSidebar>
+    //   <Menu iconShape="square">
+    //     <MenuItem icon={<FaGem />}>Dashboard</MenuItem>
+    //     <SubMenu title="Components" icon={<FaHeart />}>
+    //       <MenuItem>Component 1</MenuItem>
+    //       <MenuItem>Component 2</MenuItem>
+    //     </SubMenu>
+    //   </Menu>
+    // </ProSidebar>
   );
+
 };
 
 export default Sidebar

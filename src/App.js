@@ -8,7 +8,7 @@ import { BrowserRouter as Switch, Route, Link } from 'react-router-dom'
 
 function App() {
   return (
-    <div className="App">
+    <div className="App dark-theme">
       <Header />
       <Switch>
         <HomePage />
